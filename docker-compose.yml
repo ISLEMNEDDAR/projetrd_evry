@@ -1,0 +1,36 @@
+version: "3.6"
+services:
+  gitlab:
+    image: 'gitlab/gitlab-ce:latest'
+    restart: always
+    ports:
+      - '80:80'
+      - '443:443'
+      - '22:22'
+    volumes:
+      - '$GITLAB_HOME/config:/etc/gitlab'
+      - '$GITLAB_HOME/logs:/var/log/gitlab'
+      - '$GITLAB_HOME/data:/var/opt/gitlab'
+
+  postgres:
+    image: postgres:12
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: sonar
+      POSTGRES_PASSWORD: sonar
+      POSTGRES_DB: sonarqube
+      PGDATA: pg_data:/var/lib/postgresql/data/pgdata
+
+  sonarqube:
+    image: sonarqube:lts
+    ports:
+      - "9000:9000"
+    depends_on:
+      - postgres
+    environment:
+      - sonar.jdbc.username=sonar
+      - sonar.jdbc.password=sonar
+      - sonar.jdbc.url=jdbc:postgresql://postgres:5432/sonarqube
+volumes:
+  pg_data:
