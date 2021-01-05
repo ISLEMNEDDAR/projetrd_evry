@@ -1,5 +1,4 @@
 import {controllerUtil} from "../utils/controller.util";
-import {config} from "../config/config";
 import {gitlabService} from "../services/gitlab.service";
 
 const getAllUsers = async (req,res) => {
@@ -23,7 +22,17 @@ const getAllProjectsUsers = async (req,res)=>{
     })
 }
 
+const handleHooks = async (req, res) => {
+    await controllerUtil.treat(req, res, async () => {
+        await gitlabService.handleSystemHook(req.body)
+        return {
+            message : "hook used"
+        }
+    })
+}
+
 export const gitlabController = {
     getAllUsers,
-    getAllProjectsUsers
+    getAllProjectsUsers,
+    handleHooks
 }
