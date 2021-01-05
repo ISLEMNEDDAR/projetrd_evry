@@ -1,6 +1,7 @@
 import statusResponse from "../constatnts/status.constants";
 
 const response = (res,status,data)=>{
+    console.log("response")
     return res.status(status).json({
         data : data
     })
@@ -34,6 +35,11 @@ const responseNotFound = (res,message) =>{
     response(res,statusResponse.NOT_FOUND,message)
 }
 
+const responseFromApiCall = (res,user)=>{
+        const status = user.response.status
+        const data = user.response.data
+        response(res,status,data)
+}
 
 export const responseHandler = {
     responseOkServer,
@@ -42,5 +48,6 @@ export const responseHandler = {
     responseNotFound,
     responseBadResquest,
     responseUnproccesabaleEntity,
-    responseErrorServer
+    responseErrorServer,
+    responseFromApiCall
 }
