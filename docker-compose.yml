@@ -11,6 +11,8 @@ services:
       - '$GITLAB_HOME/config:/etc/gitlab'
       - '$GITLAB_HOME/logs:/var/log/gitlab'
       - '$GITLAB_HOME/data:/var/opt/gitlab'
+    secrets:
+      - "RYavhn4dmK3C5WR"
 
   postgres:
     image: postgres:12
