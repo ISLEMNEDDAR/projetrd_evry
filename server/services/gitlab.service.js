@@ -16,49 +16,49 @@ const handleSystemHook = async (hook)=>{
     const {event_name} = hook
     switch (event_name){
         case type_system_hooks.group.create : //
-            await handleGroupCreated(hook)
+            await handleGroupCreated(hook) // done
             break
         case type_system_hooks.group.destroy :
-            await handleGroupRemoved(hook)
+            await handleGroupRemoved(hook) // done
             break
         case type_system_hooks.group.rename :
-            await handleGroupRenamed(hook)
+            await handleGroupRenamed(hook) // to recheck
             break
         case type_system_hooks.project.create :
             //add project to sonarqube
-            await handleProjectCreated(hook)
+            await handleProjectCreated(hook) // done
             break
         case type_system_hooks.project.destroy :
             //add project to sonarqube
-            await handleProjectDestroyed(hook)
+            await handleProjectDestroyed(hook) //
             break
         case type_system_hooks.project.rename :
             //add project to sonarqube
-            await handleProjectRenamed(hook)
+            await handleProjectRenamed(hook) // to recheck
             break
         case type_system_hooks.project.transfer :
             //add project to sonarqube
-            await handleProjectTrandfered(hook)
+            await handleProjectTrandfered(hook) // to recheck
             break
         case type_system_hooks.project.update :
             //add project to sonarqube
-            await handleProjectUpdated(hook)
+            await handleProjectUpdated(hook) //to recheck
             break
         case type_system_hooks.user.create :
             //add userhandleSystemHook to sonarqube
-            await handleUserCreated(hook)
+            await handleUserCreated(hook) // done
             break
         case type_system_hooks.user.destroy :
-            await handleUserDestroyed(hook)
+            await handleUserDestroyed(hook) // done
             break
         case type_system_hooks.user.rename :
-            await handleUserRenamed(hook)
+            await handleUserRenamed(hook) // to recheck
             break
         case type_system_hooks.user.add_to_group :
-            await handleUserAddedToGroup(hook)
+            await handleUserAddedToGroup(hook) // done
             break
         case type_system_hooks.user.remove_from_group :
-            await handleUserRemovedFromGroup(hook)
+            await handleUserRemovedFromGroup(hook) // done
             break
 
     }
